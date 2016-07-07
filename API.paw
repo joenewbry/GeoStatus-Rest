@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>CB560364-AA4E-42F4-AA7C-CFA12D2DF848</UUID>
-        <nextObjectID>120</nextObjectID>
+        <nextObjectID>132</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -186,5 +186,92 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z119"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z121">
+        <attribute name="uuid" type="string">D80084A9-4793-4CF6-924B-BECC72018F34</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"5FC90127-B184-44B4-917A-820E7A3D7DEB"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},":\\/\\/",{"data":{"environmentVariable":"270BFAE0-9312-400E-9840-65440DDD132B"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},":",{"data":{"environmentVariable":"2891DA66-B3D9-49F9-B184-4DD595167B13"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/",{"data":{"environmentVariable":"8CDCE895-0193-4852-A2D0-A078C009F68A"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/status"]</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">GET</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">2</attribute>
+        <attribute name="name" type="string">User Status</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z122"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z122">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z121"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z123">
+        <attribute name="value" type="string">Joe</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z128"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z125"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z124">
+        <attribute name="value" type="string">joe</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z128"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z130"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLE" id="z125">
+        <attribute name="uuid" type="string">8CB1B3FA-FB23-4FDD-9FC4-2E69BFF9D5FC</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">First Name</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z126"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z123"></relationship>
+    </object>
+    <object type="LMENVIRONMENTDOMAIN" id="z126">
+        <attribute name="uuid" type="string">B5F52E2B-C47E-4D61-9F30-E14BA6F228A3</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">User</attribute>
+        <relationship name="environments" type="0/0" destination="LMENVIRONMENT" idrefs="z128"></relationship>
+        <relationship name="variables" type="0/0" destination="LMENVIRONMENTVARIABLE" idrefs="z127 z132 z125 z130"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLE" id="z127">
+        <attribute name="uuid" type="string">39611251-7825-4669-9982-17B135B35115</attribute>
+        <attribute name="order" type="int64">2</attribute>
+        <attribute name="name" type="string">Last name</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z126"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z129"></relationship>
+    </object>
+    <object type="LMENVIRONMENT" id="z128">
+        <attribute name="uuid" type="string">D6025D58-91B7-427C-BEA9-9241ABBB91D2</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">Default Environment</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z126"></relationship>
+        <relationship name="variablesvalues" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z131 z129 z123 z124"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z129">
+        <attribute name="value" type="string">Newbry</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z128"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z127"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLE" id="z130">
+        <attribute name="uuid" type="string">8CDCE895-0193-4852-A2D0-A078C009F68A</attribute>
+        <attribute name="order" type="int64">3</attribute>
+        <attribute name="name" type="string">username</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z126"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z124"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z131">
+        <attribute name="value" type="string">Joe Newbry</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z128"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z132"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLE" id="z132">
+        <attribute name="uuid" type="string">79C7A36E-511A-4DB0-BEB6-11CD7141FEC2</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">Name</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z126"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z131"></relationship>
     </object>
 </database>
