@@ -11,6 +11,7 @@ class Location(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
+    owner = models.ForeignKey('auth.User', related_name='locations')
 
 class Meta:
     ordering = ('created',)
