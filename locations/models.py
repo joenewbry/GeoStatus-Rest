@@ -14,24 +14,27 @@ class Location(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     owner = models.ForeignKey('auth.User', related_name='locations')
+    def __str__(self):
+        return "{} {}".format(self.latitude, self.longitude)
 
 class Context(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
-    context = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     mpoly = models.MultiPolygonField(srid=4326)
     owner = models.ForeignKey('auth.User', related_name='contexts')
+    def __str__(self):
+        return self.name
 
 class Status(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
     owner = models.ForeignKey('auth.User', related_name='status')
+    def __str__(self):
+        return self.name
 
 class Meta:
     Ordering = ('created',)
-    def __str__(self):
-        return self.name
 
 # Signal hooks
 @receiver(post_save, sender=Location)
@@ -45,7 +48,7 @@ def create_new_status(sender, **kwargs):
         contexts = user_contexts.filter(mpoly__contains=point)
         if len(contexts) > 0:
             context = contexts[0]
-            status = Status(name=context.context, owner=context.owner)
+            status = Status(name=context.status, owner=context.owner)
             status.save()
         else:
             status = Status(name="Unknown", owner=context.owner)
