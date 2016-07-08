@@ -1,3 +1,6 @@
-from django.contrib import admin
+from django.contrib.gis import admin
+from .models import Context, Location
 
-# Register your models here.
+admin.site.register(Context, admin.OSMGeoAdmin)
+admin.site.register(Location, admin.OSMGeoAdmin)
+
