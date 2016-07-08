@@ -13,7 +13,7 @@ class Location(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    owner = models.ForeignKey('auth.User', related_name='locations')
+    owner = models.ForeignKey('auth.User', related_name='location_owner')
     def __str__(self):
         return "{} {}".format(self.latitude, self.longitude)
 
@@ -22,14 +22,14 @@ class Context(models.Model):
     name = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     mpoly = models.MultiPolygonField(srid=4326)
-    owner = models.ForeignKey('auth.User', related_name='contexts')
+    owner = models.ForeignKey('auth.User', related_name='context_owner')
     def __str__(self):
         return self.name
 
 class Status(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=100)
-    owner = models.ForeignKey('auth.User', related_name='status')
+    context = models.ForeignKey('Context', related_name='status_context')
+    owner = models.ForeignKey('auth.User', related_name='status_owner')
     def __str__(self):
         return self.name
 
@@ -48,8 +48,8 @@ def create_new_status(sender, **kwargs):
         contexts = user_contexts.filter(mpoly__contains=point)
         if len(contexts) > 0:
             context = contexts[0]
-            status = Status(name=context.status, owner=context.owner)
+            status = Status(context_id=context.id, owner=location.owner)
             status.save()
         else:
-            status = Status(name="Unknown", owner=context.owner)
+            status = Status(name="Unknown", owner=location.owner)
             status.save()

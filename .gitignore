@@ -16,4 +16,8 @@ tests/.coverage
 build/
 tests/report/
 
+# For ctags
 tags
+
+# For vim swap files
+*.swp
