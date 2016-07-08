@@ -51,5 +51,6 @@ def create_new_status(sender, **kwargs):
             status = Status(context_id=context.id, owner=location.owner)
             status.save()
         else:
-            status = Status(name="Unknown", owner=location.owner)
+            # For now hardcoded to Unknown Context
+            status = Status(context_id=4, owner=location.owner)
             status.save()

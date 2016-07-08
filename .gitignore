@@ -21,3 +21,8 @@ tags
 
 # For vim swap files
 *.swp
+
+# Keep build artifacts out of git
+venv
+staticfiles
+.env
