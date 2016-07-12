@@ -37,6 +37,13 @@ class Meta:
     Ordering = ('created',)
 
 # Signal hooks
+@reciever(post_save, sender=User)
+def create_default_context(sender, **kwargs):
+    if kwargs.get('created', True):
+        user = kwargs.get('instance')
+        c = Context(owner=user.id, status="Unknown", name="Most likely Earthside")
+        c.save()
+
 @receiver(post_save, sender=Location)
 def create_new_status(sender, **kwargs):
     if kwargs.get('created', True):
@@ -52,5 +59,11 @@ def create_new_status(sender, **kwargs):
             status.save()
         else:
             # For now hardcoded to Unknown Context
-            status = Status(context_id=4, owner=location.owner)
+            # Todo lookup status or create
+            # TODO on create of user -- add default context
+
+            context = Context.objects.filter(owner=location.owner,
+                                             status="Unknown")
+            # TODO make join table instead to keep this pure
+            status = Status(context_id=c.id, status="Unknown")
             status.save()

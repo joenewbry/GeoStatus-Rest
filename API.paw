@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>CB560364-AA4E-42F4-AA7C-CFA12D2DF848</UUID>
-        <nextObjectID>139</nextObjectID>
+        <nextObjectID>143</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -98,21 +98,21 @@
         <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">Protocol</attribute>
         <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z114"></relationship>
-        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z103 z118"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z103 z118 z140"></relationship>
     </object>
     <object type="LMENVIRONMENTVARIABLE" id="z109">
         <attribute name="uuid" type="string">270BFAE0-9312-400E-9840-65440DDD132B</attribute>
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">Host</attribute>
         <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z114"></relationship>
-        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z115 z111"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z115 z111 z143"></relationship>
     </object>
     <object type="LMENVIRONMENTVARIABLE" id="z110">
         <attribute name="uuid" type="string">2891DA66-B3D9-49F9-B184-4DD595167B13</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">Port</attribute>
         <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z114"></relationship>
-        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z117 z106"></relationship>
+        <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z117 z106 z142"></relationship>
     </object>
     <object type="LMENVIRONMENTVARIABLEVALUE" id="z111">
         <attribute name="value" type="string">127.0.0.1</attribute>
@@ -128,7 +128,7 @@
         <attribute name="uuid" type="string">F77991BC-74D2-4ADF-BB56-B97D203DCF81</attribute>
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">Server</attribute>
-        <relationship name="environments" type="0/0" destination="LMENVIRONMENT" idrefs="z105 z116"></relationship>
+        <relationship name="environments" type="0/0" destination="LMENVIRONMENT" idrefs="z141 z105 z116"></relationship>
         <relationship name="variables" type="0/0" destination="LMENVIRONMENTVARIABLE" idrefs="z110 z107 z109"></relationship>
     </object>
     <object type="LMENVIRONMENTVARIABLEVALUE" id="z115">
@@ -316,5 +316,27 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z119"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z140">
+        <attribute name="value" type="string">http</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z141"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z107"></relationship>
+    </object>
+    <object type="LMENVIRONMENT" id="z141">
+        <attribute name="uuid" type="string">1EBECE67-2A01-45C6-A78C-49348AEAE890</attribute>
+        <attribute name="order" type="int64">2</attribute>
+        <attribute name="name" type="string">Staging</attribute>
+        <relationship name="domain" type="0/1" destination="LMENVIRONMENTDOMAIN" idrefs="z114"></relationship>
+        <relationship name="variablesvalues" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z140 z142 z143"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z142">
+        <attribute name="value" type="string"></attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z141"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z110"></relationship>
+    </object>
+    <object type="LMENVIRONMENTVARIABLEVALUE" id="z143">
+        <attribute name="value" type="string">calm-springs-32650.herokuapp.com</attribute>
+        <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z141"></relationship>
+        <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z109"></relationship>
     </object>
 </database>
