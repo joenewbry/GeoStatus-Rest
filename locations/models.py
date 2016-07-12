@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.gis.db import models
 from django.dispatch import receiver
+from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, pre_delete, post_save, post_delete
 from pygments.lexers import get_all_lexers
 from pygments.styles import get_all_styles
@@ -37,7 +38,7 @@ class Meta:
     Ordering = ('created',)
 
 # Signal hooks
-@reciever(post_save, sender=User)
+@receiver(post_save, sender=User)
 def create_default_context(sender, **kwargs):
     if kwargs.get('created', True):
         user = kwargs.get('instance')
