@@ -26,3 +26,6 @@ tags
 venv
 staticfiles
 .env
+
+# For brute for testing
+upload_all
