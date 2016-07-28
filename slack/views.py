@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from locations import Status
+from locations.models import Status
 
 # From http://www.django-rest-framework.org/tutorial/2-requests-and-responses/
 # Could use class based views instead
