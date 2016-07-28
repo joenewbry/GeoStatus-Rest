@@ -42,8 +42,8 @@ class Meta:
 def create_default_context(sender, **kwargs):
     if kwargs.get('created', True):
         user = kwargs.get('instance')
-        c = Context(owner=user.id, status="Unknown", name="Most likely Earthside")
-        c.save()
+        # c = Context(owner=user.id, status="Unknown", name="Most likely Earthside")
+        # c.save()
 
 @receiver(post_save, sender=Location)
 def create_new_status(sender, **kwargs):

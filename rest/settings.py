@@ -100,7 +100,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rest.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -146,8 +145,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+# django.contrib.site needs default value
+SITE_ID = 1
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Setup email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'joenewbry@gmail.com' 
