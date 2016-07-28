@@ -89,9 +89,8 @@ def post_to_slack(sender, **kwargs):
         geostatus = kwargs.get('instance')
         url = 'https://hooks.slack.com/services/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'
         username = geostatus.username
-        location = geostatus.name
-        message = geostatus.message
-
+        verb = geostatus.verb
+        location = geostatus.location
         payload = { 'text' : username + " " + message + " " + location }
         request = requests.post(url, json=payload)
 
