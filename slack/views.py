@@ -8,8 +8,7 @@ from rest_framework.response import Response
 
 @api_view(['GET'])
 def user_status(request):
-	"""
-Get current user status
-	"""
-	print("My Request" + request)
-	return Response("Hello World")
+    """
+    Get current user status
+    """
+    return Response("Hello World")
