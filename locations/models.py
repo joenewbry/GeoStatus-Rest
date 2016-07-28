@@ -32,7 +32,7 @@ class Status(models.Model):
     context = models.ForeignKey('Context', related_name='status_context')
     owner = models.ForeignKey('auth.User', related_name='status_owner')
     def __str__(self):
-        return self.name
+        return self.context.name
 
 class Meta:
     Ordering = ('created',)
