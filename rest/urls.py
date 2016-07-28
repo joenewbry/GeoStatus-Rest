@@ -19,6 +19,7 @@ from django.contrib.gis import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('locations.urls')),
+    url(r'^', include('slack.urls')),
 ]
 
 urlpatterns += [
