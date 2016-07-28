@@ -44,7 +44,7 @@ class GeoStatus(models.Model):
     message = models.CharField(max_length=400)
     url = models.CharField(max_length=400)
     def __str__(self):
-        return self.name
+        return self.username + " " + self.verb + " " + self.location
 
 
 
@@ -91,7 +91,7 @@ def post_to_slack(sender, **kwargs):
         username = geostatus.username
         verb = geostatus.verb
         location = geostatus.location
-        payload = { 'text' : username + " " + message + " " + location }
+        payload = { 'text' : username + " " + verb + " " + location }
         request = requests.post(url, json=payload)
 
 

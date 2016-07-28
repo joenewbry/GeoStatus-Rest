@@ -21,4 +21,4 @@ class GeoStatusSerializer(serializers.ModelSerializer):
     
 	class Meta:
 		model = GeoStatus
-		fields = ('name', 'device_type', 'message', 'username', 'url')
+		fields = ('location', 'device_type', 'verb', 'username', 'message', 'url')
