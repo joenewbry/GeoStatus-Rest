@@ -34,6 +34,14 @@ class Status(models.Model):
     def __str__(self):
         return self.context.name
 
+class GeoStatus(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=100)
+    device_type = models.CharField(max_length=100)
+    message = models.CharField(max_length=400)
+    username = models.CharField(max_length=400)
+    url = models.CharField(max_length=400)
+
 class Meta:
     Ordering = ('created',)
 

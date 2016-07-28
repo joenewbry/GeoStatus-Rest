@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from locations.models import Location, LANGUAGE_CHOICES, STYLE_CHOICES
+from locations.models import Location, LANGUAGE_CHOICES, STYLE_CHOICES, GeoStatus
 
 class LocationSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
@@ -16,3 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'snippets')
 
+class GeoStatusSerializer(serializers.ModelSerializer):
+
+    
+	class Meta:
+		model = GeoStatus
+		fields = ('name', 'device_type', 'message', 'username', 'url')

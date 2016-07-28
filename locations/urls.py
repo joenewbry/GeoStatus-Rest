@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^locations/(?P<pk>[0-9]+)/$', views.LocationDetail.as_view()),
     url(r'^users/$', views.UserList.as_view()),
     url(r'^users/(?P<pk>[0-9]+)$', views.UserDetail.as_view()),
+    url(r'^geostatus/$', views.GeoStatusList.as_view()),
+    url(r'^geostatus/(?P<pk>[0-9]+)/$', views.GeoStatusDetail.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

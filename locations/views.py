@@ -1,6 +1,8 @@
-from locations.models import Location
+from locations.models import Location, GeoStatus
 from locations.serializers import LocationSerializer
 from locations.serializers import UserSerializer
+from locations.serializers import GeoStatusSerializer
+
 from rest_framework import generics
 from rest_framework import permissions
 from django.contrib.auth.models import User
@@ -26,6 +28,22 @@ class LocationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class GeoStatusList(generics.ListCreateAPIView):
+    """
+    List all geo statuses, or create a new geo status
+    """
+    queryset = GeoStatus.objects.all()
+    serializer_class = GeoStatusSerializer
+
+class GeoStatusDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retreive, update, or delete a geo status instance.
+    """
+    queryset = GeoStatus.objects.all()
+    serializer_class = GeoStatusSerializer
+
 
 
 class UserList(generics.ListAPIView):
