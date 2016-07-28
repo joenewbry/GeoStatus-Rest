@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, pre_delete, post_save, post_delete
 from pygments.lexers import get_all_lexers
 from pygments.styles import get_all_styles
+import requests
 
 LEXERS = [item for item in get_all_lexers() if item[1]]
 LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
@@ -36,11 +37,16 @@ class Status(models.Model):
 
 class GeoStatus(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=400)
     device_type = models.CharField(max_length=100)
+    verb = models.CharField(max_length=400)
+    username = models.CharField(max_length=100)
     message = models.CharField(max_length=400)
-    username = models.CharField(max_length=400)
     url = models.CharField(max_length=400)
+    def __str__(self):
+        return self.name
+
+
 
 class Meta:
     Ordering = ('created',)
@@ -76,3 +82,17 @@ def create_new_status(sender, **kwargs):
             # TODO make join table instead to keep this pure
             status = Status(context_id=c.id, status="Unknown")
             status.save()
+
+@receiver(post_save, sender=GeoStatus)
+def post_to_slack(sender, **kwargs):
+    if kwargs.get('created', True):
+        geostatus = kwargs.get('instance')
+        url = 'https://hooks.slack.com/services/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'
+        username = geostatus.username
+        location = geostatus.name
+        message = geostatus.message
+
+        payload = { 'text' : username + " " + message + " " + location }
+        request = requests.post(url, json=payload)
+
+

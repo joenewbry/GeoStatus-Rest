@@ -1,4 +1,7 @@
-from locations.models import Location, GeoStatus
+from locations.models import Location
+from locations.models import Context
+from locations.models import Status
+from locations.models import GeoStatus
 from locations.serializers import LocationSerializer
 from locations.serializers import UserSerializer
 from locations.serializers import GeoStatusSerializer
