@@ -91,7 +91,8 @@ def post_to_slack(sender, **kwargs):
         username = geostatus.username
         verb = geostatus.verb
         location = geostatus.location
-        payload = { 'text' : username + " " + verb + " " + location }
+        payload = { 'text' : username + " " + verb + " " + location,
+                    'channel' : "#where-is-joe" }
         request = requests.post(url, json=payload)
 
 

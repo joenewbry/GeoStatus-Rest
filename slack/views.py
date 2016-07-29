@@ -30,8 +30,7 @@ def user_status(request):
         verb = geostatus.verb
         location = geostatus.location
         text_response = "" + username + " " + verb + " " + location
-        payload = {'text': text_response,
-                   'channel' : "#where-is-joe"}
+        payload = {'text': text_response}
         return Response(payload)
 
 """
