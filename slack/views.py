@@ -18,20 +18,20 @@ def user_status(request):
     username = request.data['text']
     geostatus = GeoStatus.objects.filter(username=username).last()
     if request.method == 'GET':
-    	return Response(request.data)
+    	return Response(geostatus)
 
 
 
     if geostatus is None:
         payload = {'text': 'No GeoStatus found for ' + request.data['text']}
-        return Response(request.data)
+        return Response(payload)
     else:
         username = geostatus.username
         verb = geostatus.verb
         location = geostatus.location
         text_response = "" + username + " " + verb + " " + location
         payload = {'text': text_response}
-        return Response(request.data)
+        return Response(payload)
 
 """
 Data posted by slack to external url
