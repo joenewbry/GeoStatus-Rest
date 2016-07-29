@@ -28,8 +28,12 @@ def user_status(request):
     else:
         username = geostatus.username
         verb = geostatus.verb
-        location = geostatus.location
+        location = geostatus.location        
         text_response = "" + username + " " + verb + " " + location
+        # Hack to make response when we don't know where someone is
+        # a little better
+        if verb == "left"
+        	text_response = "" + username + "is Earthside"
         payload = {'text': text_response}
         return Response(payload)
 
